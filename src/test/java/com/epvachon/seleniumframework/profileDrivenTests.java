@@ -3,22 +3,33 @@ package com.epvachon.seleniumframework;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.springframework.beans.factory.annotation.Value;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Testcontainers
 @Slf4j
-class googleTests {
+class profileDrivenTests {
+
+    private final String baseUrl;
+    private final String searchTerm;
 
     @Container
     //docker pull selenium/standalone-chrome
     public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer<>()
             .withCapabilities(new ChromeOptions());
+
+    public profileDrivenTests(@Value("${baseUrl}") String baseUrl,
+                              @Value("${searchTerm}")String searchTerm) {
+        this.baseUrl = baseUrl;
+        this.searchTerm = searchTerm;
+    }
 
     @BeforeEach
     public void setUp() {
@@ -31,10 +42,11 @@ class googleTests {
 
 
     @Test
-    void googleHomePage() {
-      log.debug("In Google Home Page Test");
+    void searchEngineHomePage() {
+      log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
-        webDriver.get("https://www.google.com");
-        assertTrue(webDriver.getTitle().contains("Google"));
+        webDriver.get(baseUrl);
+        webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
+        assertEquals(searchTerm, webDriver.getTitle());
     }
 }

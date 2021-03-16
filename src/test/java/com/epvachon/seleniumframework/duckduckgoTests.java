@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 @Slf4j
-class googleTests {
+class duckduckgoTests {
 
     @Container
     //docker pull selenium/standalone-chrome
@@ -31,10 +31,10 @@ class googleTests {
 
 
     @Test
-    void googleHomePage() {
-      log.debug("In Google Home Page Test");
+    void duckDuckGoHomePage() {
+      log.debug("In DuckDuckGo Home Page Test");
         RemoteWebDriver webDriver = chrome.getWebDriver();
-        webDriver.get("https://www.google.com");
-        assertTrue(webDriver.getTitle().contains("Google"));
+        webDriver.get("https://www.duckduckgo.com");
+        assertTrue(webDriver.getTitle().contains("Duck"));
     }
 }

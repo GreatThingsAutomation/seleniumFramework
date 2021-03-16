@@ -17,6 +17,25 @@
         <java.version>11</java.version>
         <testcontainers.version>1.15.2</testcontainers.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>google</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profile.active>google</spring.profile.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>duckduckgo</id>
+            <properties>
+                <spring.profile.active>duckduckgo</spring.profile.active>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,6 +83,11 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
+            <artifactId>selenium</artifactId>
+            <version>1.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>1.15.2</version>
             <scope>test</scope>
@@ -73,7 +97,12 @@
             <artifactId>selenium-api</artifactId>
             <version>3.141.59</version>
         </dependency>
-     </dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+    </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
