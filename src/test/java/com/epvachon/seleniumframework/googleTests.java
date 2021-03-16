@@ -13,21 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 @Slf4j
-class googleTests {
-
-    @Container
-    //docker pull selenium/standalone-chrome
-    public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer<>()
-            .withCapabilities(new ChromeOptions());
-
-    @BeforeEach
-    public void setUp() {
-        String host = chrome.getHost();
-        Integer port = chrome.getFirstMappedPort();
-
-        // Now we have an host and port for Redis, no matter where it is running
-        log.debug("host: {}, port: {}", host, port);
-    }
+class googleTests extends BaseTest {
 
 
     @Test

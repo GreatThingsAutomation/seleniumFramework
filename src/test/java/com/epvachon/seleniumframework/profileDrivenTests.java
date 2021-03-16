@@ -17,29 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Testcontainers
 @Slf4j
-class profileDrivenTests {
+class profileDrivenTests extends BaseTest {
 
     private final String baseUrl;
     private final String searchTerm;
-
-    @Container
-    //docker pull selenium/standalone-chrome
-    public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer<>()
-            .withCapabilities(new ChromeOptions());
 
     public profileDrivenTests(@Value("${baseUrl}") String baseUrl,
                               @Value("${searchTerm}")String searchTerm) {
         this.baseUrl = baseUrl;
         this.searchTerm = searchTerm;
-    }
-
-    @BeforeEach
-    public void setUp() {
-        String host = chrome.getHost();
-        Integer port = chrome.getFirstMappedPort();
-
-        // Now we have an host and port for Redis, no matter where it is running
-        log.debug("host: {}, port: {}", host, port);
     }
 
 
