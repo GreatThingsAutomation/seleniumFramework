@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,7 +48,9 @@ class profileDrivenTests {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
-        webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
+        WebElement searchInput = webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
+        searchInput.sendKeys(searchTerm);
+        searchInput.sendKeys(Keys.ENTER);
         assertEquals(searchTerm, webDriver.getTitle());
     }
 }
