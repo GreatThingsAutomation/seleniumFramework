@@ -27,14 +27,12 @@ public class BaseTest {
             .addArguments("private-browsing")
             .setLogLevel(FirefoxDriverLogLevel.DEBUG);
 
-
     @Container
     public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer<>()
             .withCapabilities(chromeOptions);
     @Container
     public BrowserWebDriverContainer firefox = new BrowserWebDriverContainer<>()
             .withCapabilities(firefoxOptions);
-
 
     @BeforeEach
     public void setUp() {

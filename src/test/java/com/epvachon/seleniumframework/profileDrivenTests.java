@@ -1,6 +1,7 @@
 package com.epvachon.seleniumframework;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -8,11 +9,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Testcontainers
+@SpringBootTest
 @Slf4j
 class profileDrivenTests extends BaseTest {
 
@@ -26,12 +29,14 @@ class profileDrivenTests extends BaseTest {
     }
 
     @Test
+    @Disabled
     @DisplayName("Profile determined Chrome")
     void searchEngineHomePage() {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
+        ////bookstore/book/title|//bookstore/city/zipcode/title
+        WebElement searchInput = webDriver.findElement(By.xpath("//input"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
         assertEquals(searchTerm, webDriver.getTitle());
@@ -44,7 +49,7 @@ class profileDrivenTests extends BaseTest {
         log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = firefox.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
+        WebElement searchInput = webDriver.findElement(By.xpath("//input"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
         assertEquals(searchTerm, webDriver.getTitle());
