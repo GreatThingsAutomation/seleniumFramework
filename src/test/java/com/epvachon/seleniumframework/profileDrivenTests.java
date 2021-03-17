@@ -1,7 +1,6 @@
 package com.epvachon.seleniumframework;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
@@ -27,27 +26,28 @@ class profileDrivenTests extends BaseTest {
 
     @ParameterizedTest(name = "Profile determined Chrome - {0}")
     @ValueSource(strings = {"cheese", "crackers"})
-    void searchEngineHomePage(String searchTerm) {
+    void chromeTest(String searchTerm) {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
         WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
-        assertTrue(webDriver.getTitle().contains(searchTerm));
+        log.debug("title: {}", webDriver.getTitle());
+        assertTrue(webDriver.getTitle().contains(searchTerm), webDriver.getTitle());
     }
 
 
     @ParameterizedTest(name = "Profile determined Firefox - {0}")
     @ValueSource(strings = {"cheese", "crackers"})
-    void searchEngineFireFoxHomePage(String searchTerm) {
+    void fireFoxTest(String searchTerm) {
         log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = firefox.getWebDriver();
         webDriver.get(baseUrl);
         WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
-        assertTrue(webDriver.getTitle().contains(searchTerm));
+        assertTrue(webDriver.getTitle().contains(searchTerm), webDriver.getTitle());
     }
 
 }
