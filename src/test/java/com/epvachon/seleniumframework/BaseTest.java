@@ -4,10 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -29,7 +27,6 @@ public class BaseTest {
             .addArguments("private-browsing")
             .setLogLevel(FirefoxDriverLogLevel.DEBUG);
 
-    EdgeOptions edgeOptions = new EdgeOptions();
 
     @Container
     public BrowserWebDriverContainer chrome = new BrowserWebDriverContainer<>()
