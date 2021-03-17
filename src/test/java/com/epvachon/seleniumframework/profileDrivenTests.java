@@ -34,7 +34,7 @@ class profileDrivenTests extends BaseTest {
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
         log.debug("title: {}", webDriver.getTitle());
-        assertTrue(webDriver.getTitle().contains(searchTerm), webDriver.getTitle());
+        assertTrue(webDriver.getPageSource().contains(searchTerm));
     }
 
 
@@ -47,7 +47,7 @@ class profileDrivenTests extends BaseTest {
         WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
-        assertTrue(webDriver.getTitle().contains(searchTerm), webDriver.getTitle());
+        assertTrue(webDriver.getPageSource().contains(searchTerm));
     }
 
 }
