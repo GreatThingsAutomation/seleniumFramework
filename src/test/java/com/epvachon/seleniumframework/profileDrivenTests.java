@@ -35,10 +35,6 @@ class profileDrivenTests extends BaseTest {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
-        ////bookstore/book/title|//bookstore/city/zipcode/title
-        //
-        //
-        //class="gLFyf gsfi"
         WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
