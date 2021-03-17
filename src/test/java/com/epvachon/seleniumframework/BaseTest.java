@@ -37,22 +37,17 @@ public class BaseTest {
     @Container
     public BrowserWebDriverContainer firefox = new BrowserWebDriverContainer<>()
             .withCapabilities(firefoxOptions);
-    @Container
-    public BrowserWebDriverContainer edge = new BrowserWebDriverContainer()
-            .withCapabilities(edgeOptions);
 
 
     @BeforeEach
     public void setUp() {
         chrome.start();
         firefox.start();
-        edge.start();
     }
 
     @AfterEach
     public void tearDown() {
         chrome.stop();
         firefox.stop();
-        edge.stop();
     }
 }

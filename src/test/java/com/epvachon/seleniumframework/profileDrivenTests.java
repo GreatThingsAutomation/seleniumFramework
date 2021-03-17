@@ -25,7 +25,6 @@ class profileDrivenTests extends BaseTest {
         this.searchTerm = searchTerm;
     }
 
-
     @Test
     @DisplayName("Profile determined Chrome")
     void searchEngineHomePage() {
@@ -44,19 +43,6 @@ class profileDrivenTests extends BaseTest {
     void searchEngineFireFoxHomePage() {
         log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = firefox.getWebDriver();
-        webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
-        searchInput.sendKeys(searchTerm);
-        searchInput.sendKeys(Keys.ENTER);
-        assertEquals(searchTerm, webDriver.getTitle());
-    }
-
-
-    @Test
-    @DisplayName("Profile determined Edge")
-    void searchEngineEdgeHomePage() {
-        log.debug("In {}} Home Page Test", baseUrl);
-        RemoteWebDriver webDriver = edge.getWebDriver();
         webDriver.get(baseUrl);
         WebElement searchInput = webDriver.findElement(By.xpath("//*[@id='search_form_input_homepage'] or //input"));
         searchInput.sendKeys(searchTerm);

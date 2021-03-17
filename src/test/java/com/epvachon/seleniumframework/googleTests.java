@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Slf4j
 class googleTests extends BaseTest {
 
-
     @Test
     @DisplayName("Google Home Page")
     void googleHomePage() {
