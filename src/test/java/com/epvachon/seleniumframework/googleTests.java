@@ -10,6 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
+@SpringBootTest
 @Slf4j
 class googleTests extends BaseTest {
 

@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 @Slf4j
+@SpringBootTest
 class duckduckgoTests extends BaseTest {
 
     @Test
