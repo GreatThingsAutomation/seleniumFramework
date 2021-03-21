@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
@@ -30,10 +31,9 @@ class profileDrivenTests extends BaseTest {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
+        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q' | @id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
-        log.debug("title: {}", webDriver.getTitle());
         assertTrue(webDriver.getPageSource().contains(searchTerm));
     }
 
@@ -44,9 +44,10 @@ class profileDrivenTests extends BaseTest {
         log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = firefox.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q'] | //input[@id='search_form_input_homepage']"));
+        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q' | @id='search_form_input_homepage']"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
+        assertEquals(searchTerm, webDriver.getTitle());
         assertTrue(webDriver.getPageSource().contains(searchTerm));
     }
 
