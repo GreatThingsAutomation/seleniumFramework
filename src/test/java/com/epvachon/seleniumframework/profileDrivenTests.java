@@ -31,7 +31,7 @@ class profileDrivenTests extends BaseTest {
       log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = chrome.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q' | @id='search_form_input_homepage']"));
+        WebElement searchInput = webDriver.findElement(By.xpath("//input[(@name='q') | (@id='search_form_input_homepage')]"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
         assertTrue(webDriver.getPageSource().contains(searchTerm));
@@ -44,7 +44,8 @@ class profileDrivenTests extends BaseTest {
         log.debug("In {}} Home Page Test", baseUrl);
         RemoteWebDriver webDriver = firefox.getWebDriver();
         webDriver.get(baseUrl);
-        WebElement searchInput = webDriver.findElement(By.xpath("//input[@name='q' | @id='search_form_input_homepage']"));
+        ////title[parent::zipcode|parent::book]
+        WebElement searchInput = webDriver.findElement(By.xpath("//input[(@name='q') | (@id='search_form_input_homepage')]"));
         searchInput.sendKeys(searchTerm);
         searchInput.sendKeys(Keys.ENTER);
         assertEquals(searchTerm, webDriver.getTitle());
